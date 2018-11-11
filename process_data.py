@@ -2,10 +2,10 @@
 # @Time    : 18-3-13 上午11:04
 # @Author  : AaronJny
 # @Email   : Aaron__7@163.com
-#import sys
-import importlib,sys
+import sys
+import os
 
-importlib.reload(sys)
+reload(sys)
 sys.setdefaultencoding('utf8')
 import collections
 
@@ -14,6 +14,8 @@ ORIGIN_DATA = 'origin_data/poetry.txt'  # 源数据路径
 OUTPUT_DATA = 'processed_data/poetry.txt'  # 输出向量路径
 
 VOCAB_DATA = 'vocab/poetry.vocab'
+
+#os.mknod(VOCAB_DATA)
 
 
 def word_to_id(word, id_dict):
