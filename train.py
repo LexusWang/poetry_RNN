@@ -32,7 +32,7 @@ with tf.Session() as sess:
                            {model.data: x, model.labels: y, model.emb_keep: setting.EMB_KEEP,
                             model.rnn_keep: setting.RNN_KEEP})
         if step % SHOW_STEP == 0:
-            print 'step {}, loss is {}'.format(step, loss)
+            print ('step {}, loss is {}'.format(step, loss))
         # 保存模型
         if step % SAVE_STEP == 0:
             saver.save(sess, setting.CKPT_PATH, global_step=model.global_step)
