@@ -10,7 +10,7 @@ def read_word_list():
     :return: 词汇列表
     """
     with open(setting.VOCAB_PATH, 'r') as f:
-        word_list = [word for word in f.read().decode('utf8').strip().split('\n')]
+        word_list = [word for word in f.read().strip().split('\n')]
     return word_list
 
 def read_word_to_id_dict():

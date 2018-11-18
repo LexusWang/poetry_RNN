@@ -3,9 +3,10 @@
 # @Author  : AaronJny
 # @Email   : Aaron__7@163.com
 import sys
+from imp import reload
 
 reload(sys)
-sys.setdefaultencoding('utf8')
+#sys.setdefaultencoding('utf8')
 import tensorflow as tf
 import numpy as np
 from rnn_models import EvalModel
@@ -78,47 +79,9 @@ def generate_poem():
                                         model.rnn_keep: 1.0})
             word = generate_word(prob)
         # 打印生成的诗歌
-        print poem
-
-
-def generate_acrostic(head):
-    """
-    生成藏头诗
-    :param head:每行的第一个字组成的字符串
-    :return:
-    """
-    with tf.Session() as sess:
-        # 加载最新的模型
-        ckpt = tf.train.get_checkpoint_state('ckpt')
-        saver.restore(sess, ckpt.model_checkpoint_path)
-        # 进行预测
-        rnn_state = sess.run(model.cell.zero_state(1, tf.float32))
-        poem = ''
-        cnt = 1
-        # 一句句生成诗歌
-        for x in head:
-            word = x
-            while word != '，' and word != '。':
-                poem += word
-                x = np.array([[word2id_dict[word]]])
-                prob, rnn_state = sess.run([model.prob, model.last_state],
-                                           {model.data: x, model.init_state: rnn_state, model.emb_keep: 1.0,
-                                            model.rnn_keep: 1.0})
-                word = generate_word(prob)
-                if len(poem) > 25:
-                    print 'bad.'
-                    break
-            # 根据单双句添加标点符号
-            if cnt & 1:
-                poem += '，'
-            else:
-                poem += '。'
-            cnt += 1
-        # 打印生成的诗歌
-        print poem
-        return poem
+        print (poem)
 
 
 if __name__ == '__main__':
-    generate_acrostic(u'天空')
-    # generate_poem()
+ 
+     generate_poem()
